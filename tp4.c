@@ -10,18 +10,35 @@ typedef struct Tarea {
     int Duracion;
 }Tarea;
 
+<<<<<<< HEAD
 typedef struct Nodo
+=======
+
+typedef struct  Nodo
+>>>>>>> ff4299d9301cec36e2f9e92a210a04f46a460226
 {
     Tarea T;
     struct Nodo *Siguiente;
 }Nodo;
 
+Nodo *CrearNodo(Tarea T){
+    Nodo *nuevoNodo = (Nodo *)malloc(sizeof(Nodo));
+    nuevoNodo -> T = T;
+    nuevoNodo ->Siguiente= NULL;
+    return nuevoNodo;
+}
 
+<<<<<<< HEAD
 Nodo *CrearNodo(Tarea T){
     Nodo *nuevoNodo = (Nodo*)malloc(sizeof(Nodo));
     nuevoNodo -> T= T;
     nuevoNodo ->Siguiente  = NULL;
     return nuevoNodo;
+=======
+void InsertarNodo(Nodo **Start, Nodo *nuevoNodo){
+    nuevoNodo ->Siguiente = *Start;
+    *Start = nuevoNodo;
+>>>>>>> ff4299d9301cec36e2f9e92a210a04f46a460226
 }
 
 //modulos
