@@ -10,12 +10,7 @@ typedef struct Tarea {
     int Duracion;
 }Tarea;
 
-<<<<<<< HEAD
 typedef struct Nodo
-=======
-
-typedef struct  Nodo
->>>>>>> ff4299d9301cec36e2f9e92a210a04f46a460226
 {
     Tarea T;
     struct Nodo *Siguiente;
@@ -28,17 +23,11 @@ Nodo *CrearNodo(Tarea T){
     return nuevoNodo;
 }
 
-<<<<<<< HEAD
 Nodo *CrearNodo(Tarea T){
     Nodo *nuevoNodo = (Nodo*)malloc(sizeof(Nodo));
     nuevoNodo -> T= T;
     nuevoNodo ->Siguiente  = NULL;
     return nuevoNodo;
-=======
-void InsertarNodo(Nodo **Start, Nodo *nuevoNodo){
-    nuevoNodo ->Siguiente = *Start;
-    *Start = nuevoNodo;
->>>>>>> ff4299d9301cec36e2f9e92a210a04f46a460226
 }
 
 //modulos
@@ -48,7 +37,7 @@ void mostrarTarea(Nodo *lista);
 void moverTareas(Nodo **tareasPendientes, Nodo **tareasRealizadas, int idTR);
 void buscarTareaId(Nodo *tareasPendientes, Nodo *tareasRealizadas, int id, int idBuscar);
 void buscarTareaPalabra(Nodo *tareasPendientes, Nodo *tareasRealizadas, char palabra[]);
-
+void liberarLista(Nodo **lista);
 //------------------funcion principal
 int main(){
     Nodo *tareasRealizadas = NULL;
@@ -93,7 +82,9 @@ int main(){
         printf("ingrese una opcion valida");
     }
 
-    
+        //liberar memorias
+    liberarLista(&tareasPendientes);
+    liberarLista(&tareasRealizadas);    
 
     
     return 0;
@@ -200,4 +191,16 @@ void buscarTareaPalabra(Nodo *tareasPendientes, Nodo *tareasRealizadas, char pal
         aux = aux->Siguiente; 
     }
     printf("no hay ninguna tarea con esa palabra.\n");
+}
+
+void liberarLista(Nodo **lista){
+    Nodo *aux = *lista;
+    Nodo *temp;
+    while(aux != NULL){
+        temp = aux -> Siguiente;
+        free(aux -> T.Descripcion);
+        free(aux);
+        aux = temp;
+    }
+    *lista = NULL;
 }
